@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BBC Article Quiz - Interactive English Exercise</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .feedback {
+      display: none;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>BBC Article Quiz: Interactive English Exercise</h1>
+  <p>Read the article from the BBC and test your understanding with this quiz.</p>
+
+  <div class="question" id="question1">
+    <p><strong>1. What was the main topic of the article?</strong></p>
+    <label><input type="radio" name="q1" value="correct"> A new project to restore historic murals</label><br>
+    <label><input type="radio" name="q1" value="incorrect"> A sports event in Coventry</label><br>
+    <label><input type="radio" name="q1" value="incorrect"> An art exhibition in London</label><br>
+    <div class="feedback" id="feedback1"></div>
+    <button onclick="checkAnswer('q1', 'feedback1')">Check Answer</button>
+  </div>
+
+  <div class="question" id="question2">
+    <p><strong>2. Where were the murals located?</strong></p>
+    <label><input type="radio" name="q2" value="incorrect"> Manchester</label><br>
+    <label><input type="radio" name="q2" value="correct"> Coventry</label><br>
+    <label><input type="radio" name="q2" value="incorrect"> Birmingham</label><br>
+    <div class="feedback" id="feedback2"></div>
+    <button onclick="checkAnswer('q2', 'feedback2')">Check Answer</button>
+  </div>
+
+  <div class="question" id="question3">
+    <p><strong>3. Why are the murals significant?</strong></p>
+    <label><input type="radio" name="q3" value="correct"> They are part of Coventry's cultural heritage</label><br>
+    <label><input type="radio" name="q3" value="incorrect"> They were created last year</label><br>
+    <label><input type="radio" name="q3" value="incorrect"> They depict famous athletes</label><br>
+    <div class="feedback" id="feedback3"></div>
+    <button onclick="checkAnswer('q3', 'feedback3')">Check Answer</button>
+  </div>
+
+  <script>
+    function checkAnswer(questionName, feedbackId) {
+      const options = document.getElementsByName(questionName);
+      let feedback = document.getElementById(feedbackId);
+      let answered = false;
+
+      options.forEach(option => {
+        if (option.checked) {
+          answered = true;
+          if (option.value === 'correct') {
+            feedback.textContent = 'Correct! Well done.';
+            feedback.className = 'feedback correct';
+          } else {
+            feedback.textContent = 'Incorrect. Try again.';
+            feedback.className = 'feedback incorrect';
+          }
+          feedback.style.display = 'block';
+        }
+      });
+
+      if (!answered) {
+        alert('Please select an answer.');
+      }
+    }
+  </script>
+</body>
+</html>
